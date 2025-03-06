@@ -1,7 +1,9 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -111,7 +113,7 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Comprobar que las plazas se actualizan erroneamente pues se recibe un valor negativo")
+    @DisplayName("Lanza una excepción pues se recibe un valor negativo")
     public void actualizarPlazas_Erroneamente_Negativo() throws ClubException{
 
         //Arrange
@@ -122,7 +124,7 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Comprobar que las plazas se actualizan erroneamente pues se recibe un valor menor que los matriculados")
+    @DisplayName("Lanza una excepción pues se recibe un valor menor que los matriculados")
     public void actualizarPlazas_Erroneamente_Menor_Matriculados() throws ClubException{
 
         //Arrange
@@ -130,6 +132,102 @@ public class GrupoTest {
 
         //Act y Assert
         assertThrows(ClubException.class, () ->grupo.actualizarPlazas(5));  
+    }
+
+    @Test
+    @DisplayName("Comprobar que se actualiza correctamente el número de matriculados ")
+    public void matricular_Correctamente() throws ClubException{
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        int n=2;
+
+        //Act
+        grupo.matricular(n);
+
+        //Assert
+        assertEquals(12,grupo.getMatriculados());
+    }
+
+    @Test
+    @DisplayName("Lanza una excepción pues introduce un número negativo de matriculados")
+    public void matricular_Erroneamente_Negativo() throws ClubException{
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+    
+        //Act y Assert
+        assertThrows(ClubException.class, () ->grupo.matricular(-5));  
+    }
+
+    @Test
+    @DisplayName("Lanza una excepción pues no hay plazas disponibles")
+    public void matricular_Erroneamente_No_Plazas_Libres() throws ClubException{
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        //Act y Assert
+        assertThrows(ClubException.class, () ->grupo.matricular(12));  
+    }
+
+    @Test
+    @DisplayName("Probar que se imprime el resultado correcto")
+    public void testToString() throws ClubException {
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        //Act
+        String esperado = "(G01 - Pilates - 30.0 euros - P:20 - M:10)";
+
+        /*
+        HEMOS CREADO UN STRING QUE ES EL ESPERADO
+        */
+
+        //Assert
+        assertEquals(esperado, grupo.toString(), "El método toString() no funciona correctamente");
+
+        /*
+        COMPARAMOS EL STRING ESPERADO Y EL GENERADO
+         */
+
+    }
+
+    @Test
+    @DisplayName("Comprobación de grupos iguales")
+    public void testEquals_GruposIguales() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        boolean res = grupo_1.equals(grupo_2);
+
+        // Assert
+        assertTrue(res, "Los grupos deberían ser iguales");
+
+        /* 
+         PONEMOS assertTrue PUES LOS GRUPOS SON IGUALES Y QUEREMOS COMPROBAR DICHA CASUÍSTICA
+         */
+    }
+
+    @Test
+    @DisplayName("Comprobación de grupos diferentes")
+    public void testEquals_GruposDiferentes() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G02", "Judo", 30, 5, 25.0);
+
+        // Act
+        boolean res = grupo_1.equals(grupo_2);
+
+        // Assert
+        assertFalse(res, "Los grupos NO deberían ser iguales");
+
+        /* 
+         PONEMOS assertFalse PUES LOS GRUPOS SON DIFERENTES Y QUEREMOS COMPROBAR DICHA CASUÍSTICA
+         */
     }
 
 
