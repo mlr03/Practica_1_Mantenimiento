@@ -58,6 +58,7 @@ public class Grupo {
 		}
 		nmatriculados+=n;
 	}
+
 	
 	public String toString() {
 		return "("+ codigo + " - "+actividad+" - " + tarifa + " euros "+ "- P:" + nplazas +" - M:" +nmatriculados+")";
