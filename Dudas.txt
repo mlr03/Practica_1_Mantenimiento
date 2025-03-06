@@ -1,0 +1,12 @@
+GrupoTest:
+
+- Hace falta crear otro test para cuando tenemos el nplazas=0 o con probar q sea negativo ya esta? pasa lo mismo con el actualizarPlazas, matricular...
+
+-Hace falta en plazasLibres añadir mas test? 
+          Grupo lleno	
+          Grupo con todas las plazas libres	
+          Grupo con muchas plazas disponibles
+
+-en el equals hace falta uno para el código pero actividad igual o debido al cortocircuito no?
+
+-creo q hay un error en el código en el equal relacionado con q le pasen un objeto null

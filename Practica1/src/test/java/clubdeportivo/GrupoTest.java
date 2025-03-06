@@ -10,23 +10,80 @@ import org.junit.jupiter.api.Test;
 public class GrupoTest {
 
     @Test
-    @DisplayName("Comprobar la obtención del código")
+    @DisplayName("Creacion de grupo con numero de plazas negativas lanza ClubException")
+    public void Grupo_NumeroPlazasNegativas_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", -20, 10, 30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creacion de grupo con numero de plazas igual a 0 lanza ClubException")
+    public void Grupo_NumeroPlazasCero_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", 0, 10, 30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creacion de grupo con numero de matriculados menor que 0 lanza ClubException")
+    public void Grupo_MatriculadosNegativos_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", 20, -1, 30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creacion de grupo con tarifa negativa lanza ClubException")
+    public void Grupo_TarifaNegativa_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", 20, 10, -30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creacion de grupo con tarifa igual a 0 lanza ClubException")
+    public void Grupo_TarifaCero_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", 20, 10, 0.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creacion de grupo con numero de matriculados mayor que el numero de plazas lanza ClubException")
+    public void Grupo_MatriculadosMayorQueNPlazas_LanzaClubException() {
+        // Act y Assert
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", "Pilates", 20, 30, 30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Obtener el codigo del grupo devuelve el codigo correcto")
     public void getCodigo_DevuelveElCodigo() throws ClubException { //SE PONE THROWS PUES LANZA UNA EXCEPCIÓN EL CONSTRUCTOR EN CASO DE NO SER CORRECTO PUES ES UN ATRIBUTO DEL CONSTRUCTOR
+
         // Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
         // Act
         String codigo = grupo.getCodigo();
+
         // Assert
         assertEquals("G01", codigo);
 
         /*
           SE PONE THROWS PUES LANZA UNA EXCEPCIÓN EL CONSTRUCTOR EN CASO DE NO 
           SE PUEDA CREAR EL OBJETO DE Arrange CORRECTAMENTE
-        */
+         */
     }
 
     @Test
-    @DisplayName("Comprobar la obtención de la actividad")
+    @DisplayName("Obtener la actividad devuelve la actividad correcta")
     public void getActividad_DevuelveLaActividad() throws ClubException {
 
         //Arrange
@@ -36,12 +93,12 @@ public class GrupoTest {
         String actividad = grupo.getActividad();
 
         //Assert
-        assertEquals("Pilates", actividad); 
+        assertEquals("Pilates", actividad);
 
     }
 
     @Test
-    @DisplayName("Comprobar la obtención del número de plazas")
+    @DisplayName("Obtener el numero de plazas devuelve el numero de plazas correcto")
     public void getPlazas_DevuelveElNumeroDePlazas() throws ClubException {
 
         //Arrange
@@ -51,11 +108,11 @@ public class GrupoTest {
         int plazas = grupo.getPlazas();
 
         //Assert
-        assertEquals(20, plazas); 
+        assertEquals(20, plazas);
     }
 
     @Test
-    @DisplayName("Comprobar la obtención del número de matriculados")
+    @DisplayName("Obtener el numero de matriculados devuelve el numero de matriculados correcto")
     public void getMatriculados_DevuelveElNumeroDeMatriculados() throws ClubException {
 
         //Arrange
@@ -65,32 +122,32 @@ public class GrupoTest {
         int nMatriculados = grupo.getMatriculados();
 
         //Assert
-        assertEquals(10, nMatriculados); 
+        assertEquals(10, nMatriculados);
     }
 
     @Test
-    @DisplayName("Comprobar la obtención de la tarifa")
-    public void getTarida_DevuelveLaTarifa() throws ClubException {
+    @DisplayName("Obtener la tarifa devuelve la tarifa correcta")
+    public void getTarifa_DevuelveLaTarifa() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
         //Act
-        double tarifa= grupo.getTarifa();
+        double tarifa = grupo.getTarifa();
 
         //Assert
-        assertEquals(30.0, tarifa); 
+        assertEquals(30.0, tarifa);
     }
 
     @Test
-    @DisplayName("Devuelve el número de plazas libres")
-    public void getNumeroPlazasLibres() throws ClubException{
+    @DisplayName("Obtener el numero de plazas libres devuelve el numero de plazas libres correcto")
+    public void plazasLibres_DevuelveNumeroPlazasLibres() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
         //Act
-        int nPlazasLibres=grupo.plazasLibres();
+        int nPlazasLibres = grupo.plazasLibres();
 
         //Assert
         assertEquals(10, nPlazasLibres);
@@ -98,105 +155,138 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Comprobar que las plazas se actualizan correctamente pues se recibe un valor positivo y mayor que el número de matriculados")
-    public void actualizarPlazas_Correctamente() throws ClubException{
+    @DisplayName("Actualizar plazas con un valor mayor que 0 y mayor igual que los matriculados actualiza las plazas")
+    public void actualizarPlazas_Correctamente() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
-        int n=15;
+        int n = 15;
 
         //Act
         grupo.actualizarPlazas(n);
 
         //Assert
-        assertEquals(n,grupo.getPlazas());
+        assertEquals(n, grupo.getPlazas());
     }
 
     @Test
-    @DisplayName("Lanza una excepción pues se recibe un valor negativo")
-    public void actualizarPlazas_Erroneamente_Negativo() throws ClubException{
+    @DisplayName("Actualizar plazas con un valor negativo lanza ClubException")
+    public void actualizarPlazas_ValorNegativo_LanzaClubException() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
         //Act y Assert
-        assertThrows(ClubException.class, () ->grupo.actualizarPlazas(-5));  
+        assertThrows(ClubException.class, () -> {
+            grupo.actualizarPlazas(-5);
+        });
     }
 
     @Test
-    @DisplayName("Lanza una excepción pues se recibe un valor menor que los matriculados")
-    public void actualizarPlazas_Erroneamente_Menor_Matriculados() throws ClubException{
+    @DisplayName("Actualizar plazas con un valor igual a 0 lanza ClubException")
+    public void actualizarPlazas_ValorCero_LanzaClubException() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
         //Act y Assert
-        assertThrows(ClubException.class, () ->grupo.actualizarPlazas(5));  
+        assertThrows(ClubException.class, () -> {
+            grupo.actualizarPlazas(0);
+        });
     }
 
     @Test
-    @DisplayName("Comprobar que se actualiza correctamente el número de matriculados ")
-    public void matricular_Correctamente() throws ClubException{
+    @DisplayName("Actualizar plazas con un valor menor que los matriculados lanza ClubException")
+    public void actualizarPlazas_ValorMenorAMatriculados_LanzaClubException() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
-        int n=2;
+
+        //Act y Assert
+        assertThrows(ClubException.class, () -> {
+            grupo.actualizarPlazas(5);
+        });
+    }
+
+    @Test
+    @DisplayName("Matricular a un numero valido de personas a un grupo actualiza el numero de matriculados")
+    public void matricular_NumeroValido_ActualizaElNumeroDeMatriculados() throws ClubException {
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        int n = 2;
 
         //Act
         grupo.matricular(n);
 
         //Assert
-        assertEquals(12,grupo.getMatriculados());
+        assertEquals(12, grupo.getMatriculados());
     }
 
     @Test
-    @DisplayName("Lanza una excepción pues introduce un número negativo de matriculados")
-    public void matricular_Erroneamente_Negativo() throws ClubException{
-
-        //Arrange
-        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
-    
-        //Act y Assert
-        assertThrows(ClubException.class, () ->grupo.matricular(-5));  
-    }
-
-    @Test
-    @DisplayName("Lanza una excepción pues no hay plazas disponibles")
-    public void matricular_Erroneamente_No_Plazas_Libres() throws ClubException{
+    @DisplayName("Matricular a un numero negativo de personas a un grupo lanza ClubException")
+    public void matricular_NumeroNegativo_LanzaClubException() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
         //Act y Assert
-        assertThrows(ClubException.class, () ->grupo.matricular(12));  
+        assertThrows(ClubException.class, () -> {
+            grupo.matricular(-5);
+        });
     }
 
     @Test
-    @DisplayName("Probar que se imprime el resultado correcto")
-    public void testToString() throws ClubException {
+    @DisplayName("Matricular a un numero de personas igual a 0 lanza ClubException")
+    public void matricular_NumeroCero_LanzaClubException() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
 
-        //Act
+        //Act y Assert
+        assertThrows(ClubException.class, () -> {
+            grupo.matricular(0);
+        });
+    }
+
+    @Test
+    @DisplayName("Matricular a un numero de personas mayor que las plazas libres lanza ClubException")
+    public void matricular_NumeroMayorAPlazasLibres_LanzaClubException() throws ClubException {
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        //Act y Assert
+        assertThrows(ClubException.class, () -> {
+            grupo.matricular(12);
+        });
+    }
+
+    @Test
+    @DisplayName("Probar que se imprime el grupo con el formato correcto")
+    public void toString_DevuelveFormatoStringCorrecto() throws ClubException {
+
+        //Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
         String esperado = "(G01 - Pilates - 30.0 euros - P:20 - M:10)";
-
         /*
         HEMOS CREADO UN STRING QUE ES EL ESPERADO
-        */
+         */
+
+        //Act
+        String resultado = grupo.toString();
 
         //Assert
-        assertEquals(esperado, grupo.toString(), "El método toString() no funciona correctamente");
+        assertEquals(esperado, resultado);
 
         /*
         COMPARAMOS EL STRING ESPERADO Y EL GENERADO
          */
-
     }
 
     @Test
-    @DisplayName("Comprobación de grupos iguales")
-    public void testEquals_GruposIguales() throws ClubException {
+    @DisplayName("Comprobación de grupos iguales devuelve true")
+    public void equals_GrupoIgual_DevuelveTrue() throws ClubException {
         // Arrange
         Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
         Grupo grupo_2 = new Grupo("G01", "Pilates", 20, 10, 30.0);
@@ -205,7 +295,7 @@ public class GrupoTest {
         boolean res = grupo_1.equals(grupo_2);
 
         // Assert
-        assertTrue(res, "Los grupos deberían ser iguales");
+        assertTrue(res);
 
         /* 
          PONEMOS assertTrue PUES LOS GRUPOS SON IGUALES Y QUEREMOS COMPROBAR DICHA CASUÍSTICA
@@ -213,8 +303,8 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Comprobación de grupos diferentes")
-    public void testEquals_GruposDiferentes() throws ClubException {
+    @DisplayName("Comprobación de grupos diferentes devuelve false")
+    public void equals_GrupoDiferente_DevuelveFalse() throws ClubException {
         // Arrange
         Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
         Grupo grupo_2 = new Grupo("G02", "Judo", 30, 5, 25.0);
@@ -223,12 +313,101 @@ public class GrupoTest {
         boolean res = grupo_1.equals(grupo_2);
 
         // Assert
-        assertFalse(res, "Los grupos NO deberían ser iguales");
+        assertFalse(res);
 
         /* 
          PONEMOS assertFalse PUES LOS GRUPOS SON DIFERENTES Y QUEREMOS COMPROBAR DICHA CASUÍSTICA
          */
     }
 
+    @Test
+    @DisplayName("Comprobación de grupos con el mismo codigo pero diferente actividad devuelve false")
+    public void equals_MismoCodigoDistintaActividad_DevuelveFalse() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G01", "Judo", 30, 5, 25.0);
 
+        // Act
+        boolean res = grupo_1.equals(grupo_2);
+
+        // Assert
+        assertFalse(res);
+
+    }
+
+    @Test
+    @DisplayName("Equals con un objeto nulo devuelve false")
+    public void equals_ObjetoNulo_DevuelveFalse() throws ClubException {
+        // Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        boolean res = grupo.equals(null);
+
+        // Assert
+        assertFalse(res);
+
+    }
+
+    @Test
+    @DisplayName("Equals con un objeto de otra clase devuelve false")
+    public void equals_OtroObjeto_DevuelveFalse() throws ClubException {
+        // Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Object obj = new Object();
+
+        // Act
+        boolean res = grupo.equals(obj);
+
+        // Assert
+        assertFalse(res);
+
+    }
+
+    @Test
+    @DisplayName("Equals con un objeto de la misma clase pero diferente codigo devuelve false")
+    public void equals_MismaClaseDistintoCodigo_DevuelveFalse() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G02", "Pilates", 20, 10, 30.0);
+
+        // Act
+        boolean res = grupo_1.equals(grupo_2);
+
+        // Assert
+        assertFalse(res);
+
+    }
+
+    @Test
+    @DisplayName("Hashcode de dos grupos iguales devuelve el mismo hash")
+    public void hashCode_GruposIguales_DevuelveElMismoHash() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        int hash_1 = grupo_1.hashCode();
+        int hash_2 = grupo_2.hashCode();
+
+        // Assert
+        assertEquals(hash_1, hash_2);
+
+    }
+
+    @Test
+    @DisplayName("Hashcode de dos grupos diferentes devuelve diferente hash")
+    public void hashCode_GruposDiferentes_DevuelveDiferenteHash() throws ClubException {
+        // Arrange
+        Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
+        Grupo grupo_2 = new Grupo("G02", "Judo", 30, 5, 25.0);
+
+        // Act
+        int hash_1 = grupo_1.hashCode();
+        int hash_2 = grupo_2.hashCode();
+
+        // Assert
+        assertFalse(hash_1 == hash_2);
+
+    }
 }
