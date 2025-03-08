@@ -76,10 +76,6 @@ public class GrupoTest {
         // Assert
         assertEquals("G01", codigo);
 
-        /*
-          SE PONE THROWS PUES LANZA UNA EXCEPCIÓN EL CONSTRUCTOR EN CASO DE NO 
-          SE PUEDA CREAR EL OBJETO DE Arrange CORRECTAMENTE
-         */
     }
 
     @Test
@@ -366,7 +362,7 @@ public class GrupoTest {
 
     @Test
     @DisplayName("Equals con un objeto de la misma clase pero diferente codigo devuelve false")
-    public void equals_MismaClaseDistintoCodigo_DevuelveFalse() throws ClubException {
+    public void equals_MismaActividadDistintoCodigo_DevuelveFalse() throws ClubException {
         // Arrange
         Grupo grupo_1 = new Grupo("G01", "Pilates", 20, 10, 30.0);
         Grupo grupo_2 = new Grupo("G02", "Pilates", 20, 10, 30.0);
