@@ -1,6 +1,8 @@
 GrupoTest:
 
-- Hace falta crear otro test para cuando tenemos el nplazas=0 o con probar q sea negativo ya esta? pasa lo mismo con el actualizarPlazas, matricular...
+- Hace falta crear otro test para cuando tenemos el nplazas=0 o con probar q sea negativo ya esta? pasa lo mismo con el actualizarPlazas, matricular... 
+
+SIIIIIIII, HAY Q COMPLETAR
 
 -Hace falta en plazasLibres añadir mas test? 
           Grupo lleno	
@@ -9,4 +11,21 @@ GrupoTest:
 
 -en el equals hace falta uno para el código pero actividad igual o debido al cortocircuito no?
 
--creo q hay un error en el código en el equal relacionado con q le pasen un objeto null
+-creo q hay un error en el código en el equal relacionado con q le pasen un código o act null
+
+-no se si es necesario un test para el constructor con valores correctos
+
+_________________________________________________
+
+ClubDeportivo:
+
+- No se si hace falta un test para probar el constructor con argumentos validos
+
+- en anyadirActividad no se si hace falta q probemos si se crea el grupo mal o si se hace al anyadirbien
+
+- no se si faltan test para comprobar q los nombres de las activades o club no son nulos!!!!!!!!
+
+-no se si el error de añadir act es como lo he hecho o deberíamos ampliar el array pq en el main tal cual q nos dieron si no salta el error (q hemos querido q salte) pero tal vez el profesor buscaba q el main se ejecute bien y no se si el error de plazas libres lo q debería hacer es lanzar una excepcion
+
+
+

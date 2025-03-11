@@ -1,6 +1,8 @@
+
 package clubdeportivo;
 
 import java.util.StringJoiner;
+
 
 public class ClubDeportivo {
 
@@ -50,6 +52,15 @@ public class ClubDeportivo {
         }
         int pos = buscar(g);
         if (pos == -1) { // El grupo es nuevo
+            //ERROR DETECTADO:
+            //Al intentar anyadir un grupo a un array de grupos no estabamos comprobando si ya estaba lleno
+            //pudiendo asi causar un ArrayIndexOutOfBoundsException
+
+            //SOLUCION PROPUESTA:
+            //Comprobar si el array de grupos esta lleno y si lo esta lanzar una excepcion
+            if (ngrupos == grupos.length) {
+                throw new ClubException("ERROR: el club no puede tener mas grupos");
+            }
             grupos[ngrupos] = g;
             ngrupos++;
         } else { // El grupo ya existe --> modificamos las plazas
@@ -61,9 +72,17 @@ public class ClubDeportivo {
         int p = 0;
         int i = 0;
         while (i < ngrupos) {
-            if (grupos[i].getActividad().equals(actividad)) {
+            //ERROR DETECTADO:
+            // if (grupos[i].getActividad().equals(actividad)) {
+            //     p += grupos[i].plazasLibres();
+            // }
+            //Al iterar sobre los grupos no comprobabamos si la actividad del grupo era nula, si hay posiciones vacias se generaria un NullPointerException
+
+            //SOLUCION PROPUESTA:
+            //Comprobar si la actividad del grupo es nula antes de llamar a getActividad()
+            if (grupos[i] != null && grupos[i].getActividad().equals(actividad)) {
                 p += grupos[i].plazasLibres();
-            }
+            }   
             i++;
         }
         return p;

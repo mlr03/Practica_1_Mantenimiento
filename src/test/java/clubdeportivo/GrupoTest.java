@@ -2,12 +2,23 @@ package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class GrupoTest {
+
+    @Test
+    @DisplayName("Creación de un grupo con valores válidos crea el grupo correctamente")
+    public void Grupo_ValoresValidos_SeCreaCorrectamente() throws ClubException {
+        // Arrange & Act
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Assert
+        assertNotNull(grupo);
+    }
 
     @Test
     @DisplayName("Creacion de grupo con numero de plazas negativas lanza ClubException")
