@@ -279,38 +279,20 @@ public class ClubDeportivoTest {
     }
 
     // @Test
-    // @DisplayName("Debe matricular personas cuando la actividad coincide con la del grupo")
-    // public void testMatricularConActividadCoincidente() throws ClubException {
-    //     // Arrange
-    //     ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
-    //     Grupo grupo = new Grupo("G1", "Yoga", 10, 0, 10.0); 
-    //     club.anyadirActividad(grupo);
-    
-    //     // Act
-    //     club.matricular("Yoga", 5);  
-    
-    //     // Assert
-    //     assertEquals(5, grupo.getMatriculados()); 
-    //     assertEquals(5, grupo.plazasLibres());    
-    // }
-
-    // @Test
     // @DisplayName("Debe matricular personas cuando la actividad es nula en ambos casos")
     // public void testMatricularConActividadNula() throws ClubException {
-    //     // Arrange
     //     ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
-    //     Grupo grupoConActividadNula = new Grupo("G1", null, 10, 0, 10.0); 
-    //     club.anyadirActividad(grupoConActividadNula);
-    
-    //     // Act
-    //     club.matricular(null, 5); 
-    
-    //     // Assert
-    //     assertEquals(5, grupoConActividadNula.getMatriculados()); 
-    //     assertEquals(5, grupoConActividadNula.plazasLibres());  
-    
+    //     Grupo grupo = new Grupo("G1", null, 10, 0, 10.0);
+    //     club.anyadirActividad(grupo);
+
+    //     club.matricular(null, 5);
+
+    //     assertEquals(5, grupo.getMatriculados());
+    //     assertEquals(5, grupo.plazasLibres());
     // }
-  
+
+    
+
 
     @Test
     @DisplayName("Comprobar ingresos cuando no hay grupos devuelve 0")
