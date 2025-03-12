@@ -17,16 +17,6 @@ public class ClubDeportivoAltoRendimientoTest {
             new ClubDeportivoAltoRendimiento("clubEjemplo", 10, 20, -5.0);
         }); 
 
-        /*
-            PUEDE SER QUE NO SE TENGA QUE INSTANCIAR 
-            NINGUN OBJETO EN ARRANGE Y QUE NO HAYA (PARA PROBAR EN LOS CONSTRUCTORES VALORES 
-            INVÁLIDOS DE ALGÚN ATRIBUTO POR EJEMPLO USAR LA ESTRUCRTURA DE PRUEBA ANTERIOR)
-        */
-
-        /*
-            SI HAY QUE PROBAR VALORES INVÁLIDOS (NEGATIVOS O CERO) 
-            PROBAR EN PRUEBAS DIFERENTES
-        */
     }
 
     @Test
@@ -40,7 +30,6 @@ public class ClubDeportivoAltoRendimientoTest {
 
     }
 
-    
 
     @Test
     @DisplayName("Debe lanzar una excepción si faltan datos al añadir una actividad")
