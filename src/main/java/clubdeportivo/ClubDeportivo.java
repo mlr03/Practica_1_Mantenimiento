@@ -88,18 +88,6 @@ public class ClubDeportivo {
         return p;
     }
 
-    // public int plazasLibres(String actividad) {
-    //     int p = 0;
-    //     int i = 0;
-    //     while (i < ngrupos) {
-    //         if (grupos[i] != null && grupos[i].getActividad().equals(actividad)) {
-    //             p += grupos[i].plazasLibres();  // Esto ya debería contar las plazas de todos los grupos
-    //         }
-    //         i++;
-    //     }
-    //     return p;
-    // }
-    
 
     public void matricular(String actividad, int npersonas) throws ClubException {
         int plazas = plazasLibres(actividad);
@@ -121,30 +109,6 @@ public class ClubDeportivo {
         }
     }
 
-    // public void matricular(String actividad, int npersonas) throws ClubException {
-    //     int plazas = plazasLibres(actividad);  
-    //     System.out.println("Plazas libres en la actividad " + actividad + ": " + plazas);
-    //     if (plazas < npersonas) {
-    //         throw new ClubException("ERROR: no hay suficientes plazas libres para esa actividad en el club.");
-    //     }
-    
-    //     int i = 0;
-    //     while (i < ngrupos && npersonas > 0) {
-    //         if (actividad.equals(grupos[i].getActividad())) {
-    //             int plazasGrupo = grupos[i].plazasLibres();
-    //             System.out.println("Grupo " + grupos[i].getActividad() + " tiene " + plazasGrupo + " plazas libres.");
-    //             if (npersonas >= plazasGrupo) {
-    //                 grupos[i].matricular(plazasGrupo);
-    //                 npersonas -= plazasGrupo;
-    //             } else {
-    //                 grupos[i].matricular(npersonas);
-    //                 npersonas = 0;
-    //             }
-    //         }
-    //         i++;
-    //     }
-    // }
-    
     
 
     //si no hay grupos --> ingresos 0 

@@ -203,6 +203,8 @@ public class ClubDeportivoTest {
         });
     }
 
+
+
     //////////////////////////////ME QUEDE POR EL METODO MATRICULAR, necesitamos añadir mas test
 //sin revisar
     @Test
@@ -219,51 +221,67 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Matricular menos personas que plazas disponibles en un grupo")
     void matricular_MenosPersonasQuePlazas() throws ClubException {
+      
+        // Arrange
+            ClubDeportivo club = new ClubDeportivo("ClubEjemplo",3);
+
+            Grupo grupo_2 = new Grupo("G1", "Yoga", 4, 0, 10.0);
+            Grupo grupo_1 = new Grupo("G2", "Yoga", 3, 0, 10.0);
+
+            club.anyadirActividad(grupo_1);
+            club.anyadirActividad(grupo_2);
+        
+        // Act
+            club.matricular("Yoga", 3);
+
+        // Assert
+            assertEquals(4, club.plazasLibres("Yoga"));
+    }
+
+    @Test
+    @DisplayName("Matricular exactamente el número de plazas de un solo grupo")
+    public void matricular_ExactamentePlazasDeUnGrupo() throws ClubException {
 
         // Arrange
         ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
 
-        Grupo grupo1 = new Grupo("G1", "Yoga", 10, 0, 50.0);
-        Grupo grupo2 = new Grupo("G2", "Pilates", 4, 0, 50.0);
+        Grupo grupo_2 = new Grupo("G1", "Yoga", 4, 0, 10.0); 
+        Grupo grupo_1 = new Grupo("G2", "Yoga", 3, 0, 10.0); 
 
-        club.anyadirActividad(grupo1);
-        club.anyadirActividad(grupo2);
+        club.anyadirActividad(grupo_1);
+        club.anyadirActividad(grupo_2);
 
         // Act
-        club.matricular("Yoga", 3);
+        club.matricular("Yoga", 5);  
 
         // Assert
-        assertEquals(7, club.plazasLibres("Yoga"));
+        assertEquals(2, club.plazasLibres("Yoga")); 
     }
 
-    // @Test
-    // @DisplayName("Matricular exactamente el número de plazas de un solo grupo")
-    // public void matricular_ExactamentePlazasDeUnGrupo() throws ClubException {
-    //     //Arrange
-    //     ClubDeportivo club = new ClubDeportivo("ClubEjemplo",3);
-    //     Grupo grupo1 = new Grupo("Yoga", "Lunes", 5, 0, 50.0); 
-    //     Grupo grupo2 = new Grupo("Yoga", "Miércoles", 7, 0, 50.0); 
-    //     club.anyadirActividad(grupo1);
-    //     club.anyadirActividad(grupo2);
-    //     // Act
-    //     club.matricular("Yoga", 5);
-    //     // Assert
-    //     assertEquals(7, club.plazasLibres("Yoga"));
-    //     }
-//     @Test
-//     @DisplayName("Distribuir correctamente los estudiantes entre grupos con plazas disponibles")
-//     public void matricular_DistribuyeCorrectamenteEntreGrupos() throws ClubException {
-//         // Arrange
-//         ClubDeportivo club = new ClubDeportivo("ClubEjemplo",3);
-//         Grupo grupo1 = new Grupo("Yoga", "Lunes", 5, 0, 50.0); 
-//         Grupo grupo2 = new Grupo("Yoga", "Miércoles", 7, 0, 50.0); 
-//         club.anyadirActividad(grupo1);
-//         club.anyadirActividad(grupo2);
-//         // Act
-//         club.matricular("Yoga", 8);  
-//         // Assert
-//         assertEquals(4, club.plazasLibres("Yoga")); 
-// }
+
+    
+    @Test
+    @DisplayName("Distribuir correctamente los estudiantes entre grupos con plazas disponibles")
+    public void matricular_DistribuyeCorrectamenteEntreGrupos() throws ClubException {
+        // Arrange
+        ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
+        
+        Grupo grupo_2 = new Grupo("G1", "Yoga", 4, 0, 10.0);
+        Grupo grupo_1 = new Grupo("G2", "Yoga", 3, 0, 10.0); 
+
+        club.anyadirActividad(grupo_1);
+        club.anyadirActividad(grupo_2);
+
+        // Act
+        club.matricular("Yoga", 5); 
+
+        // Assert
+        assertEquals(2, club.plazasLibres("Yoga"));  
+       
+    }
+
+
+
     @Test
     @DisplayName("Comprobar ingresos cuando no hay grupos devuelve 0")
     public void ingresos_ClubSinGrupos_Return0() throws ClubException {
