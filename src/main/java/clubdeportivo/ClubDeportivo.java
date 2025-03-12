@@ -80,7 +80,7 @@ public class ClubDeportivo {
 
             //SOLUCION PROPUESTA:
             //Comprobar si la actividad del grupo es nula antes de llamar a getActividad()
-            if (grupos[i] != null && grupos[i].getActividad().equals(actividad)) {
+            if (grupos[i].getActividad().equals(actividad)) {
                 p += grupos[i].plazasLibres();
             }   
             i++;
@@ -88,7 +88,7 @@ public class ClubDeportivo {
         return p;
     }
 
-
+    
     public void matricular(String actividad, int npersonas) throws ClubException {
         int plazas = plazasLibres(actividad);
         if (plazas < npersonas) {
@@ -96,21 +96,25 @@ public class ClubDeportivo {
         }
         int i = 0;
         while (i < ngrupos && npersonas > 0) {
-            if (actividad.equals(grupos[i].getActividad())) {
+            // Verificamos si ambas actividades son nulas o si son iguales
+            if ((actividad == null && grupos[i].getActividad() == null) || 
+                (actividad != null && actividad.equals(grupos[i].getActividad()))) {
                 int plazasGrupo = grupos[i].plazasLibres();
                 if (npersonas >= plazasGrupo) {
                     grupos[i].matricular(plazasGrupo);
                     npersonas -= plazasGrupo;
                 } else {
                     grupos[i].matricular(npersonas);
+                    npersonas = 0;
                 }
             }
             i++;
         }
     }
-
+    
     
 
+    
     //si no hay grupos --> ingresos 0 
     // un grupo
     //varios grupos
@@ -124,6 +128,8 @@ public class ClubDeportivo {
         return cantidad;
     }
 
+
+    
     public String toString() {
         StringJoiner sj = new StringJoiner(", ", "[ ", " ]");
         int i = 0;
@@ -133,4 +139,7 @@ public class ClubDeportivo {
         }
         return nombre + " --> " + sj.toString();
     }
+
+
+    
 }

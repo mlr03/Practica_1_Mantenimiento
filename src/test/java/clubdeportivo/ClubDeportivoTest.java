@@ -221,7 +221,6 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Matricular menos personas que plazas disponibles en un grupo")
     void matricular_MenosPersonasQuePlazas() throws ClubException {
-      
         // Arrange
             ClubDeportivo club = new ClubDeportivo("ClubEjemplo",3);
 
@@ -241,7 +240,6 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Matricular exactamente el número de plazas de un solo grupo")
     public void matricular_ExactamentePlazasDeUnGrupo() throws ClubException {
-
         // Arrange
         ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
 
@@ -258,7 +256,7 @@ public class ClubDeportivoTest {
         assertEquals(2, club.plazasLibres("Yoga")); 
     }
 
-
+    
     
     @Test
     @DisplayName("Distribuir correctamente los estudiantes entre grupos con plazas disponibles")
@@ -280,7 +278,39 @@ public class ClubDeportivoTest {
        
     }
 
+    // @Test
+    // @DisplayName("Debe matricular personas cuando la actividad coincide con la del grupo")
+    // public void testMatricularConActividadCoincidente() throws ClubException {
+    //     // Arrange
+    //     ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
+    //     Grupo grupo = new Grupo("G1", "Yoga", 10, 0, 10.0); 
+    //     club.anyadirActividad(grupo);
+    
+    //     // Act
+    //     club.matricular("Yoga", 5);  
+    
+    //     // Assert
+    //     assertEquals(5, grupo.getMatriculados()); 
+    //     assertEquals(5, grupo.plazasLibres());    
+    // }
 
+    // @Test
+    // @DisplayName("Debe matricular personas cuando la actividad es nula en ambos casos")
+    // public void testMatricularConActividadNula() throws ClubException {
+    //     // Arrange
+    //     ClubDeportivo club = new ClubDeportivo("ClubEjemplo", 3);
+    //     Grupo grupoConActividadNula = new Grupo("G1", null, 10, 0, 10.0); 
+    //     club.anyadirActividad(grupoConActividadNula);
+    
+    //     // Act
+    //     club.matricular(null, 5); 
+    
+    //     // Assert
+    //     assertEquals(5, grupoConActividadNula.getMatriculados()); 
+    //     assertEquals(5, grupoConActividadNula.plazasLibres());  
+    
+    // }
+  
 
     @Test
     @DisplayName("Comprobar ingresos cuando no hay grupos devuelve 0")
@@ -321,5 +351,12 @@ public class ClubDeportivoTest {
     //     double ingresos = club.ingresos();
     //     //Assert
     //     assertEquals(50, ingresos);
-    // }
+    // 
+
+   
+    
+
+
+
 }
+
