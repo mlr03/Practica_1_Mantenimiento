@@ -48,5 +48,6 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 		double cantidad = super.ingresos();
 		return cantidad+cantidad*(incremento/100);
 	}
-	
+
+
 }
