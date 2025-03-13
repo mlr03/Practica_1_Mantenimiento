@@ -9,6 +9,12 @@ public class Grupo {
     private double tarifa;
 
     public Grupo(String codigo, String actividad, int nplazas, int matriculados, double tarifa) throws ClubException {
+        //ERROR DETECTADO: No tiene sentido crear un grupo que tenga el codigo o la actividad a null
+        //SOLUCION: Hacer la comprobacion y si son nulos lanzar una excepcion
+        if (codigo == null || actividad == null) {
+            throw new ClubException("ERROR: El código y la actividad no pueden ser nulos.");
+        }
+
         if (nplazas <= 0 || matriculados < 0 || tarifa <= 0) {
             throw new ClubException("ERROR: los datos numéricos no pueden ser menores o iguales que 0.");
         }

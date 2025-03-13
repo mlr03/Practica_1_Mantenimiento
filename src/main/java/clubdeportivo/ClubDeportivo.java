@@ -1,8 +1,6 @@
-
 package clubdeportivo;
 
 import java.util.StringJoiner;
-
 
 public class ClubDeportivo {
 
@@ -35,6 +33,7 @@ public class ClubDeportivo {
     }
 
     public void anyadirActividad(String[] datos) throws ClubException {
+
         try {
             int plazas = Integer.parseInt(datos[2]);
             int matriculados = Integer.parseInt(datos[3]);
@@ -80,39 +79,34 @@ public class ClubDeportivo {
 
             //SOLUCION PROPUESTA:
             //Comprobar si la actividad del grupo es nula antes de llamar a getActividad()
-            if (grupos[i].getActividad().equals(actividad)) {
+            if (grupos[i] != null && grupos[i].getActividad() != null && grupos[i].getActividad().equals(actividad)) {
                 p += grupos[i].plazasLibres();
-            }   
+            }
             i++;
         }
         return p;
     }
 
-    
     public void matricular(String actividad, int npersonas) throws ClubException {
-		int plazas = plazasLibres(actividad);
-		if (plazas < npersonas) {
-			throw new ClubException("ERROR: no hay suficientes plazas libres para esa actividad en el club.");
-		}
-		int i = 0;
-		while (i < ngrupos && npersonas > 0) {
-			if (actividad.equals(grupos[i].getActividad())) {
-				int plazasGrupo = grupos[i].plazasLibres();
-				if (npersonas >= plazasGrupo) {
-					grupos[i].matricular(plazasGrupo);
-					npersonas -= plazasGrupo;
-				} else {
-					grupos[i].matricular(npersonas);
-				}
-			}
-			i++;
-		}
-	}
-    
-    
-    //si no hay grupos --> ingresos 0 
-    // un grupo
-    //varios grupos
+        int plazas = plazasLibres(actividad);
+        if (plazas < npersonas) {
+            throw new ClubException("ERROR: no hay suficientes plazas libres para esa actividad en el club.");
+        }
+        int i = 0;
+        while (i < ngrupos && npersonas > 0) {
+            if (actividad.equals(grupos[i].getActividad())) {
+                int plazasGrupo = grupos[i].plazasLibres();
+                if (npersonas >= plazasGrupo) {
+                    grupos[i].matricular(plazasGrupo);
+                    npersonas -= plazasGrupo;
+                } else {
+                    grupos[i].matricular(npersonas);
+                }
+            }
+            i++;
+        }
+    }
+
     public double ingresos() {
         double cantidad = 0.0;
         int i = 0;
@@ -123,8 +117,6 @@ public class ClubDeportivo {
         return cantidad;
     }
 
-
-    
     public String toString() {
         StringJoiner sj = new StringJoiner(", ", "[ ", " ]");
         int i = 0;
@@ -135,7 +127,4 @@ public class ClubDeportivo {
         return nombre + " --> " + sj.toString();
     }
 
-    
-    
-    
 }

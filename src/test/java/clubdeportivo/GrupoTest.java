@@ -11,6 +11,22 @@ import org.junit.jupiter.api.Test;
 public class GrupoTest {
 
     @Test
+    @DisplayName("Creación de un grupo con código nulo lanza ClubException")
+    public void Grupo_CodigoNulo_LanzaClubException() {
+        assertThrows(ClubException.class, () -> {
+            new Grupo(null, "Pilates", 10, 5, 30.0);
+        });
+    }
+
+    @Test
+    @DisplayName("Creación de un grupo con actividad nula lanza ClubException")
+    public void Grupo_ActividadNula_LanzaClubException() {
+        assertThrows(ClubException.class, () -> {
+            new Grupo("G01", null, 10, 5, 30.0);
+        });
+    }
+
+    @Test
     @DisplayName("Creación de un grupo con valores válidos crea el grupo correctamente")
     public void Grupo_ValoresValidos_SeCreaCorrectamente() throws ClubException {
         // Arrange & Act
@@ -162,8 +178,21 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("Actualizar plazas con un valor igual a matriculados actualiza las plazas")
+    public void actualizarPlazas_ValorIgualAMatriculados_ActualizaLasPlazas() throws ClubException {
+        // Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        grupo.actualizarPlazas(10);
+
+        // Assert
+        assertEquals(10, grupo.getPlazas());
+    }
+
+    @Test
     @DisplayName("Actualizar plazas con un valor mayor que 0 y mayor igual que los matriculados actualiza las plazas")
-    public void actualizarPlazas_Correctamente() throws ClubException {
+    public void actualizarPlazas_ValorMayorQueCeroYMatriculados_ActualizaLasPlazas() throws ClubException {
 
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
@@ -292,6 +321,19 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("Equals con el mismo objeto devuelve true")
+    public void equals_MismoObjeto_DevuelveTrue() throws ClubException {
+        // Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        boolean res = grupo.equals(grupo);
+
+        // Assert
+        assertTrue(res);
+    }
+
+    @Test
     @DisplayName("Comprobación de grupos iguales devuelve true")
     public void equals_GrupoIgual_DevuelveTrue() throws ClubException {
         // Arrange
@@ -417,4 +459,19 @@ public class GrupoTest {
         assertFalse(hash_1 == hash_2);
 
     }
+
+    @Test
+    @DisplayName("HashCode de un mismo objeto es consistente")
+    public void hashCode_MismoObjeto_EsConsistente() throws ClubException {
+        // Arrange
+        Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
+
+        // Act
+        int hash1 = grupo.hashCode();
+        int hash2 = grupo.hashCode();
+
+        // Assert
+        assertEquals(hash1, hash2);
+    }
+
 }
