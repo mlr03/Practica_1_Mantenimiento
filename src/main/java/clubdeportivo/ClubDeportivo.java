@@ -73,7 +73,7 @@ public class ClubDeportivo {
         int p = 0;
         int i = 0;
 
-        //añdido para solucionar
+        //Añadido para solucionar
         if (actividad == null) {
             return 0;
         }

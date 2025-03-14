@@ -58,7 +58,6 @@ public class ClubDeportivoAltoRendimientoTest {
 
     }
 
-    //CREO Q NO HACE FALTA PQ SE PRUEBA EN EL CLUB NORMAL
     @Test
     @DisplayName("Añadir actividad con datos válidos se añade correctamente")
     public void anyadirActividad_DatosValidos_SeAñadeCorrectamente() throws ClubException {
@@ -123,7 +122,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-    //NO SE SI SE DEBEN COMPROBAR CON ESOS ASSERT O CON EL STRING?
+  
     @Test
     @DisplayName("Añadir actividad con plazas mayores al máximo permitido ajusta al máximo")
     public void anyadirActividad_PlazasMayoresQueMaximo_AjustaAlMaximo() throws ClubException {
@@ -135,7 +134,7 @@ public class ClubDeportivoAltoRendimientoTest {
         club.anyadirActividad(datosSuperanMaximo);
 
         // Assert
-        assertEquals(15, club.plazasLibres("Crossfit")); // 20 - 5 = 15 plazas libres
+        assertEquals(15, club.plazasLibres("Crossfit")); 
     }
 
     @Test
@@ -150,10 +149,10 @@ public class ClubDeportivoAltoRendimientoTest {
         club.anyadirActividad(datosDentroMaximo);
 
         // Assert
-        assertEquals(13, club.plazasLibres("Crossfit")); // 18 - 5 = 13 plazas libres
+        assertEquals(13, club.plazasLibres("Crossfit")); 
     }
 
-    //NO SE SI FALTAN MAS TESTS DE INGRESOS
+
     @Test
     @DisplayName("Calcular los ingresos correctamente con incremento aplicado")
     public void ingresos_conIncremento_ReturnIngresosCorrectos() throws ClubException {

@@ -242,10 +242,6 @@ public class ClubDeportivoTest {
         club.anyadirActividad(grupo_1);
         club.anyadirActividad(grupo_2);
 
-        /*
-            HAY QUE CREAR Y AÑADIR GRUPOS AL CLUB PUES EL 
-            CLUB ESTÁ FORMADO POR GRUPOS 
-         */
         // Act
         club.matricular("Yoga", 5);
 
@@ -372,5 +368,6 @@ public class ClubDeportivoTest {
         // Assert
         assertEquals(esperado, resultado);
     }
+
 
 }

@@ -305,9 +305,6 @@ public class GrupoTest {
         //Arrange
         Grupo grupo = new Grupo("G01", "Pilates", 20, 10, 30.0);
         String esperado = "(G01 - Pilates - 30.0 euros - P:20 - M:10)";
-        /*
-        HEMOS CREADO UN STRING QUE ES EL ESPERADO
-         */
 
         //Act
         String resultado = grupo.toString();
@@ -315,9 +312,6 @@ public class GrupoTest {
         //Assert
         assertEquals(esperado, resultado);
 
-        /*
-        COMPARAMOS EL STRING ESPERADO Y EL GENERADO
-         */
     }
 
     @Test
@@ -364,9 +358,6 @@ public class GrupoTest {
         // Assert
         assertFalse(res);
 
-        /* 
-         PONEMOS assertFalse PUES LOS GRUPOS SON DIFERENTES Y QUEREMOS COMPROBAR DICHA CASUÍSTICA
-         */
     }
 
     @Test
