@@ -8,16 +8,17 @@ import org.junit.jupiter.api.Test;
 
 public class ClubDeportivoAltoRendimientoTest {
 
-    //NO SE SI DEJAR ESTO TOTAL NO ME DA MAS COBERTURA
-    @Test
-    @DisplayName("Creación de ClubDeportivoAltoRendimiento con valores correctos se inicializa correctamente")
-    public void ClubDeportivoAltoRendimiento_ValoresCorrectos_SeInicializaCorrectamente() throws ClubException {
-        //Arrange, Act
-        ClubDeportivoAltoRendimiento club = new ClubDeportivoAltoRendimiento("ClubElite", 20, 10.0);
 
-        //Assert
+    @Test
+    @DisplayName("Creación de ClubDeportivoAltoRendimiento con valores correctos y tamaño especificado se inicializa correctamente")
+    public void ClubDeportivoAltoRendimiento_ValoresCorrectosConTamano_SeInicializaCorrectamente() throws ClubException {
+        // Arrange, Act
+        ClubDeportivoAltoRendimiento club = new ClubDeportivoAltoRendimiento("ClubElite", 10, 20, 10.0);
+
+        // Assert
         assertNotNull(club);
     }
+
 
     @Test
     @DisplayName("Creacion de un club con un maximo negativo o cero lanza ClubException")
