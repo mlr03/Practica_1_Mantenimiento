@@ -273,6 +273,14 @@ public class ClubDeportivoTest {
 
     }
 
+    //añadido
+    @Test
+    @DisplayName("Matricular en una actividad con nombre null lanza ClubException")
+    public void matricular_ActividadNull_LanzaClubException() throws ClubException {
+        ClubDeportivo club = new ClubDeportivo("ClubEjemplo");
+        assertThrows(ClubException.class, () -> club.matricular(null, 3));
+    }
+
     @Test
     @DisplayName("Comprobar ingresos cuando no hay grupos devuelve 0")
     public void ingresos_ClubSinGrupos_Return0() throws ClubException {

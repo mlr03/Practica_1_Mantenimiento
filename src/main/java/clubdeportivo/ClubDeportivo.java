@@ -1,6 +1,8 @@
+
 package clubdeportivo;
 
 import java.util.StringJoiner;
+
 
 public class ClubDeportivo {
 
@@ -70,6 +72,12 @@ public class ClubDeportivo {
     public int plazasLibres(String actividad) {
         int p = 0;
         int i = 0;
+
+        //añdido para solucionar
+        if (actividad == null) {
+            return 0;
+        }
+
         while (i < ngrupos) {
             //ERROR DETECTADO:
             // if (grupos[i].getActividad().equals(actividad)) {
@@ -78,8 +86,7 @@ public class ClubDeportivo {
             //Al iterar sobre los grupos no comprobabamos si la actividad del grupo era nula, si hay posiciones vacias se generaria un NullPointerException
 
             //SOLUCION PROPUESTA:
-            //Comprobar si la actividad del grupo es nula antes de llamar a getActividad()
-            if (grupos[i] != null && grupos[i].getActividad() != null && grupos[i].getActividad().equals(actividad)) {
+            if (grupos[i] != null && grupos[i].getActividad().equals(actividad)) {
                 p += grupos[i].plazasLibres();
             }
             i++;
